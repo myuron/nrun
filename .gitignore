@@ -1,0 +1,9 @@
+# direnv
+.direnv
+.envrc
+
+# go
+nrun
+
+# nix
+result
