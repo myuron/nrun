@@ -1,3 +1,4 @@
+// main package
 package main
 
 import (
@@ -28,15 +29,15 @@ func run() error {
 	}
 
 	// json dataを構造体に変換する
-	var pkg_json PackageJSON
-	if err := json.Unmarshal(data, &pkg_json); err != nil {
+	var pkgJSON PackageJSON
+	if err := json.Unmarshal(data, &pkgJSON); err != nil {
 		return err
 	}
 
 	// script一覧を表示する
-	keys := slices.Sorted(maps.Keys(pkg_json.Scripts))
+	keys := slices.Sorted(maps.Keys(pkgJSON.Scripts))
 	for _, key := range keys {
-		fmt.Printf("%s: %s\n", key, pkg_json.Scripts[key])
+		fmt.Printf("%s: %s\n", key, pkgJSON.Scripts[key])
 	}
 
 	return nil
