@@ -3,7 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"maps"
 	"os"
+	"slices"
 )
 
 type PackageJSON struct {
@@ -26,7 +28,8 @@ func main() {
 	}
 
 	// script一覧を表示する
-	for key, value := range scripts.Scripts {
-		fmt.Printf("%s: %s\n", key, value)
+	keys := slices.Sorted(maps.Keys(scripts.Scripts))
+	for _, key := range keys {
+		fmt.Printf("%s: %s\n", key, scripts.Scripts[key])
 	}
 }
