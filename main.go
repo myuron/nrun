@@ -21,15 +21,15 @@ func main() {
 	}
 
 	// json dataを構造体に変換する
-	var scripts PackageJSON
-	if err := json.Unmarshal(data, &scripts); err != nil {
+	var pkg_json PackageJSON
+	if err := json.Unmarshal(data, &pkg_json); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 
 	// script一覧を表示する
-	keys := slices.Sorted(maps.Keys(scripts.Scripts))
+	keys := slices.Sorted(maps.Keys(pkg_json.Scripts))
 	for _, key := range keys {
-		fmt.Printf("%s: %s\n", key, scripts.Scripts[key])
+		fmt.Printf("%s: %s\n", key, pkg_json.Scripts[key])
 	}
 }
