@@ -13,18 +13,24 @@ type PackageJSON struct {
 }
 
 func main() {
+	if err := run(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+
+}
+
+func run() error {
 	// package.jsonを読み込む
 	data, err := os.ReadFile("package.json")
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		return err
 	}
 
 	// json dataを構造体に変換する
 	var pkg_json PackageJSON
 	if err := json.Unmarshal(data, &pkg_json); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		return err
 	}
 
 	// script一覧を表示する
@@ -32,4 +38,6 @@ func main() {
 	for _, key := range keys {
 		fmt.Printf("%s: %s\n", key, pkg_json.Scripts[key])
 	}
+
+	return nil
 }
