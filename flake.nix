@@ -44,6 +44,7 @@
               go
               just
               golangci-lint
+              cobra-cli
             ];
           };
         };
